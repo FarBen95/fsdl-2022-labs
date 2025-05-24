@@ -59,11 +59,11 @@ def _clone_repo(repo, branch, prefix):
 
 def _install_dependencies_colab():
     subprocess.run( # directly pip install the prod requirements
-        ["pip", "install", "--quiet", "-r", "requirements/prod.in"], check=True)
+        ["pip", "install", "--quiet", "-r", "requirements/prod.in", "--upgrade", "--force-reinstall"], check=True)
 
     # run a series of commands with pipes to pip install the dev requirements
     subprocess.run(
-        ["sed 1d requirements/dev.in | grep -v '#' | xargs pip install --quiet"],
+        ["sed 1d requirements/dev.in | grep -v '#' | xargs pip install --quiet --upgrade --force-reinstall"],
         shell=True, check=True)
         
     # reset pkg_resources list of requirements so gradio can ifner its version correctly
