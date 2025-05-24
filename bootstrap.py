@@ -11,7 +11,7 @@ try:  # check if we're in a git repo
     repo_dir = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, check=True).stdout.decode().strip()
     repo = Path(repo_dir).name
 except subprocess.CalledProcessError:
-    repo = os.environ.get("FSDL_REPO", "fsdl-text-recognizer-2022-labs")
+    repo = os.environ.get("FSDL_REPO", "fsdl-2022-labs")
         
 branch = os.environ.get("FSDL_BRANCH", "main")
 token = os.environ.get("FSDL_GHTOKEN")
@@ -52,7 +52,7 @@ def change_to_lab_dir(lab_idx=None):
 
 
 def _clone_repo(repo, branch, prefix):
-    url = f"https://{prefix}github.com/full-stack-deep-learning/{repo}"
+    url = f"https://{prefix}github.com/FarBen95/{repo}"
     subprocess.run(  # run git clone
         ["git", "clone", "--branch", branch, "-q", url], check=True)
 
